@@ -3,6 +3,7 @@ import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
 import { ActionTypes } from "../../constants/reducerActionTypers";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import "./Auth.css";
 
@@ -11,10 +12,11 @@ const Auth = () => {
   const clientId =
     "296660586296-n9u1ri299s6vlkt3g0jkhpv9ht7tvi36.apps.googleusercontent.com";
 
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const accountSwitchHandler = (e) => {
-    e.preventDefault();
+    //e.preventDefault();
     setIsSignup((state) => !state);
   };
 
@@ -29,12 +31,15 @@ const Auth = () => {
   });
 
   const googleSuccessHandler = async (res) => {
-    //console.log(res.profileObj);
+    console.log(res.profileObj);
     const response = res?.profileObj;
     const token = res?.tokenId;
-    // try {
-    //   dispatch({ type: ActionTypes.AUTH, payload: { response, token } });
-    // } catch (error) {}
+    try {
+      dispatch({ type: ActionTypes.AUTH, payload: { response, token } });
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const googleFailureHandler = (error) => {
@@ -44,6 +49,7 @@ const Auth = () => {
 
   return (
     <div className="form-container">
+      <h5>You can only google sign in for now.</h5>
       <form action="" className="register-form">
         {isSignup && (
           <>
