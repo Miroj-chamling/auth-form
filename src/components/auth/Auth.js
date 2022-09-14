@@ -16,7 +16,7 @@ const Auth = () => {
   const navigate = useNavigate();
 
   const accountSwitchHandler = (e) => {
-    //e.preventDefault();
+    e.preventDefault();
     setIsSignup((state) => !state);
   };
 
