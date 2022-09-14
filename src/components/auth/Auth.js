@@ -4,13 +4,13 @@ import { gapi } from "gapi-script";
 import { ActionTypes } from "../../constants/reducerActionTypers";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { CLIENTID } from "../../config/config";
 
 import "./Auth.css";
 
 const Auth = () => {
   const [isSignup, setIsSignup] = useState(false);
-  const clientId =
-    "296660586296-n9u1ri299s6vlkt3g0jkhpv9ht7tvi36.apps.googleusercontent.com";
+  const clientId = CLIENTID;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
